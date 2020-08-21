@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	email = 45154998+BrennanAyers@users.noreply.github.com
+	name = Brennan Ayers
+# Please adapt and uncomment the following lines:
+#	name = Brennan Ayers
+#	email = brennan@Brennans-MacBook-Pro.local
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[commit]
+	template = ~/.gitmessage
