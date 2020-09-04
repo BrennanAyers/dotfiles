@@ -47,8 +47,6 @@ function parse_git_dirty {
 
 export PS1="\u\w\`parse_git_branch\` "
 
-eval "$(rbenv init -)"
-
 source ~/.git-prompt.sh
 PS1="\[\e[0;34m\]\w\[\e[0m\]\[\e[0;36m\] \`parse_git_branch\`\[\e[0m\]$ "
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
@@ -85,7 +83,8 @@ alias gm='git merge'
 alias gmf='git merge --no-ff'
 alias gma='git merge --abort'
 alias gmc='git merge --continue'
-alias gpl='git pull'
+alias gp='git pull'
+alias gpl="git pull origin \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'\`"
 alias gplr='git pull --rebase'
 alias gps="git push origin \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'\`"
 alias gf='git fetch'
@@ -100,6 +99,8 @@ alias gstp='git stash pop'
 alias gsts='git stash save'
 alias gr='git reset'
 alias grh='git reset HEAD~1'
+
+alias trash='git stash clear'
 
 # ----------------------
 # Git Functions
@@ -116,7 +117,6 @@ alias btsb='BluetoothConnector e8-07-bf-6c-70-43'
 alias sasn='SwitchAudioSource -n'
 
 alias yolo='rails db:reset'
-alias trash='git stash clear'
 
 alias ber='bundle exec rspec'
 alias be='bundle exec'
@@ -171,23 +171,6 @@ function rspecfeats(){ rspec spec/features/"$@"; }
 complete -o nospace -F _feature rspecfeats
 function rspecreqs(){ rspec spec/requests/"$@"; }
 complete -o nospace -F _request rspecreqs
-# added by Anaconda3 2019.03 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/brennan/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     \eval "$__conda_setup"
-# else
-#     if [ -f "/Users/brennan/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/Users/brennan/anaconda3/etc/profile.d/conda.sh"
-#         CONDA_CHANGEPS1=false conda activate base
-#     else
-#         \export PATH="/Users/brennan/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda init <<<
 
-# Activate Python venv
-alias activate='source ~/development/.venv/default/bin/activate'
-source /usr/local/bin/activate.sh
+# Activate global Python ENV
+alias activate='source ~/development/global_python_env/bin/activate'
