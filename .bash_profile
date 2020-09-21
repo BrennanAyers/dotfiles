@@ -87,6 +87,7 @@ alias gp='git pull'
 alias gpl="git pull origin \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'\`"
 alias gplr='git pull --rebase'
 alias gps="git push origin \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'\`"
+alias gpod="git push origin --delete"
 alias gf='git fetch'
 alias grb='git rebase'
 alias gs='git status'
